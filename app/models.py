@@ -13,3 +13,16 @@ class Record(models.Model):
     
     def __str__(self):
         return (f"{self.first_name} {self.last_name}")
+    
+class Project(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
+    client = models.CharField(max_length=50)
+    project_name = models.CharField(max_length=50)
+    client_pm = models.CharField(max_length=50)
+    lab_pm = models.CharField(max_length=50)
+    project_number = models.CharField(max_length=50)
+    po_number = models.CharField(max_length=50)
+    billing_code = models.CharField(max_length=50)
+    
+    def __str__(self):
+        return (f"{self.project_number} {self.client}")

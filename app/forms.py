@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
-from .models import Record
+from .models import Record, Project
 
 class SignUpForm(UserCreationForm):
     email = forms.EmailField(label="", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Email Address'}))
@@ -44,3 +44,16 @@ class AddRecordForm(forms.ModelForm):
     class Meta:
         model = Record
         exclude = ("user",)
+        
+class NewProjectForm(forms.ModelForm):
+    client = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder":"Client", "class":"form-control"}), label="")
+    project_name = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder":"Project", "class":"form-control"}), label="")
+    client_pm = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder":"Client Project Manager", "class":"form-control"}), label="")
+    lab_pm = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder":"Lab Project Manager", "class":"form-control"}), label="")
+    project_number = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder":"Project Number", "class":"form-control"}), label="")
+    po_number = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder":"PO Number", "class":"form-control"}), label="")
+    billing_code = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder":"Billing Code", "class":"form-control"}), label="")
+    
+    class Meta:
+        model = Project
+        exclude = ("project",)

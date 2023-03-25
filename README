@@ -6,3 +6,20 @@ pip install mysql-connector
 django-admin startproject alkynyl
 cd alkynyl
 python manage.py startapp app
+python.exe .\mydb.py 
+..\virt\Scripts\activate 
+python.exe .\manage.py migrate
+python.exe .\manage.py createsuperuser
+python.exe .\manage.py runserver
+
+# Git
+git config --global user.name "Juwan Fernando"
+git config --global user.email "juwanf99@gmail.com"
+git config --global push.default matching
+git config --global alias.co checkout
+git init
+
+## Depend on the repo
+git remote add origin https://github.com/juwanfernando/alkynyl.git
+git branch -M main
+git push -u origin main
