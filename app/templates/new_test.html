@@ -3,12 +3,13 @@
 
 <div class="col-md-6 offset-md-3">
 
-<h1>New Project</h1>
+<h1>New Chain of Custody</h1>
 <br/>
-<form method="POST" action="{% url 'new_project' %}">
+<form method="POST" action="{% url 'new_test' %}">
     {% csrf_token %}
-    
+
     {{ form.as_p }}
+    
     <br/>
     <button type="submit" class="btn btn-secondary">Add Project</button>
     <a href="{% url 'all_projects' %}" class="btn btn-secondary">Back</a>

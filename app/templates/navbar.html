@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark"> <!-- navbar-dark bg-dark | bg-body-tertiary-->
+<nav class="navbar sticky-top navbar-expand-lg navbar-inverse navbar-fixed-top navbar-dark bg-dark"> <!-- navbar-dark bg-dark | bg-body-tertiary-->
     <div class="container-fluid">
       <a class="navbar-brand" href="{% url 'home' %}">alkynyl</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -13,10 +13,14 @@
             </a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="{% url 'new_project' %}">New Project</a></li>
-              <li><a class="dropdown-item" href="{% url 'workOrder' %}">All Projects</a></li>
-              <li><a class="dropdown-item" href="{% url 'batch' %}">Update Project</a></li>              
+              <li><a class="dropdown-item" href="{% url 'all_projects' %}">All Projects</a></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="{% url 'benchSheet' %}">Approvals</a></li>
+              <li><a class="dropdown-item" href="{% url 'new_sample' %}">New Sample(s)</a></li>
+              <li><a class="dropdown-item" href="{% url 'samples' %}">All Samples</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="{% url 'store' %}">Store</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="{% url 'approvals' %}">Approvals</a></li>              
             </ul>
           </li>
           <li class="nav-item dropdown">
@@ -33,9 +37,6 @@
             </ul>
           </li>
 
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'add_record' %}">Add Record</a>
-          </li>
           {% else %}
           <li class="nav-item">
             <a class="nav-link" href="{% url 'register' %}">Register</a>
@@ -43,10 +44,10 @@
           {% endif %}
         </ul>
         {% if user.is_authenticated %}
-          <form class="d-flex" role="search">
+          <!--<form class="d-flex" role="search">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-sm btn-outline-success" type="submit">Search</button>
-          </form>
+          </form>-->
           <ul class="navbar-nav mb-2 mb-lg-0">
             <li class="nav-item">
               <a class="nav-link link-danger" href="{% url 'logout' %}">Logout</a>

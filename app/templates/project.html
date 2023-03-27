@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="col-md-6 offset-md-3">
+
+<h1>Project</h1>
+
+    <div class="card">
+        <div class="card-header">
+            <strong>{{ project.project_name }}</strong>
+        </div>
+        <div class="card-body">
+            <p class="card-text">
+                <strong>Email: </strong>{{ project.client }}<br/>
+                <strong>Phone: </strong>{{ project.client_pm }}<br/>
+                <strong>Address: </strong>{{ project.lab_pm }}<br/>
+                <strong>City: </strong>{{ project.project_number }}<br/>
+                <strong>State: </strong>{{ project.po_number }}<br/>
+                <strong>Zipcode: </strong>{{ project.billing_code }}<br/>
+                <strong>Created At: </strong>{{ project.created_at }}<br/>
+                <strong>ID: </strong>{{ project.id }}
+            </p>
+            <a href="{% url 'all_projects' %}" class="btn btn-secondary">Back</a>
+            <a href="{% url 'update_project' project.id %}" class="btn btn-secondary">Update</a>
+            <a href="{% url 'delete_project' project.id %}" class="btn btn-danger">Delete</a>
+        </div>
+    </div>
+    
+</div>
+
+{% endblock %}

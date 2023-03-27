@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if user.is_authenticated %}
+<table class="table table-striped table-hover table-bordered" id="dataTable">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">Project Number</th>
+        <th scope="col">Project Name</th>
+        <th scope="col">Client </th>
+        <th scope="col">Chain of Custody</th>
+        <th scope="col">Client PM</th>
+        <th scope="col">Lab PM</th>
+        <th scope="col">PO Number</th>
+        <th scope="col">Billing Code</th>
+        <th scope="col">Samples</th>
+        <th scope="col">Approval</th>
+      </tr>
+    </thead>
+    <tbody>      
+        {% if projects %}
+            {% for project in projects %}
+                <tr>
+                    <td>{{ project.project_number }}</td>
+                    <td>{{ project.project_name }}</td>
+                    <td>{{ project.client }}</td>
+                    <td>{{ project.coc_number }}</td>
+                    <td>{{ project.client_pm }}</td>
+                    <td>{{ project.lab_pm }}</td>
+                    <td>{{ project.po_number }}</td>
+                    <td>{{ project.billing_code }}</td>
+                    <td class="text-center"><input type="button" class="btn btn-sm btn-outline-secondary" value="Samples"></td>
+                    <td class="text-center">{% if project.approved == False %}
+                            <input type="button" class="btn btn-sm btn btn-outline-success" value="Appove">
+                        {% else %}  
+                            <input type="button" class="btn btn-sm btn-outline-danger" value="Refuse">
+                        {% endif %}  
+                    </td>
+                </tr>
+            {% endfor %}
+        {% endif %}       
+    </tbody>
+  </table>
+
+
+{% else %}
+<div class="col-md-6 offset-md-3">
+<h1>Login</h1>
+<br/>
+
+<form method="POST" action="{% url 'home' %}">
+    {% csrf_token %}
+    <div class="mb-3">
+      <input type="text" class="form-control" name="username" placeholder="Username" required>
+    </div>
+    <div class="mb-3">
+      <input type="password" class="form-control" name="password" placeholder="Password" required>
+    </div>
+    <button type="submit" class="btn btn-secondary">Login</button><br/><br/>
+    <i>or register if you do not have an account</i><br/><br/>
+    <a class="btn btn-light" href="{% url 'register' %}">Register</a>
+</form>
+</div>
+
+{% endif %}
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+
+<script>
+    $('select').on('change', function(e){
+    
+        var url = "{% url 'samples' %}";
+        $.ajax({
+            url: "{% url 'samples' %}",
+            data: {
+                'pn': this.value
+            },
+            type: "GET",
+            cache: true,
+            dataType: 'json',
+            success: function (response) {
+                console.log("success");
+                //$('#dataTable').html(data);
+                var table = $('#dataTable').DataTable();
+                table.clear();
+                $.each(response, function(index, tbl) {
+                    $(tbl).each(function(index, row) {
+                    table.row.add(row);
+                    });
+                });
+                table.draw();
+            },
+            error: function (response) {
+                alert("Got an error dude " + response);
+            }
+        });
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="col-md-6 offset-md-3">
+
+<h1>New Project</h1>
+<br/>
+<form method="POST" action="{% url 'new_project' %}">
+    {% csrf_token %}
+    
+    <div class="mb-3">
+        <select name="clientLst" id="client" class="form-control">
+            <option value="0">--Select Client--</option>
+            {% for item in projectcontext%}
+                <option value="{{ item.id }}">{{ item.client }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <select name="projectNameLst" id="projectName" class="form-control">
+            <option value="0">--Select Project--</option>
+            {% for item in projectcontext%}
+                <option value="{{ item.id }}">{{ item.project_name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <select name="clientPMlst" id="clientPM" class="form-control">
+            <option value="0">--Select Client Project Manager--</option>
+            {% for item in projectcontext%}
+                <option value="{{ item.id }}">{{ item.client_pm }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <select name="lPMLst" id="lPM" class="form-control">
+            <option value="0">--Select Lab Project Manager--</option>
+            {% for item in projectcontext%}
+                <option value="{{ item.id }}">{{ item.lab_pm }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <select name="projectNumberLst" id="projectNumber" class="form-control">
+            <option value="0">--Select Project Number--</option>
+            {% for item in projectcontext%}
+                <option value="{{ item.id }}">{{ item.project_number }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <select name="poNumberLst" id="poNumber" class="form-control">
+            <option value="0">--Select PO Number--</option>
+            {% for item in projectcontext%}
+                <option value="{{ item.id }}">{{ item.po_number }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <select name="billingCodeLst" id="billingCode" class="form-control">
+            <option value="0">--Select Billing Code--</option>
+            {% for item in projectcontext%}
+                <option value="{{ item.id }}">{{ item.billing_code }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <br/>
+    <button type="submit" class="btn btn-secondary">Add Project</button>
+    <a href="{% url 'all_projects' %}" class="btn btn-secondary">Back</a>
+</form>
+</div>
+
+{% endblock %}

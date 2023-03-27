@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="col-md-6 offset-md-3">
+
+<h1>Add Sample</h1>
+<br/>
+<form method="POST" action="{% url 'new_sample' 1 %}">
+    {% csrf_token %}
+
+    {{ form.as_p }}
+    
+    <br/>
+    <button type="submit" class="btn btn-secondary">Add Sample</button>
+    <button type="submit" formaction="{% url 'new_sample' 0 %}" class="btn btn-secondary">Save and Add another Sample</button>
+    <a href="{% url 'new_samples' %}" class="btn btn-secondary">All Samples</a>
+</form>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#my-select').prepend('<option value="" disabled selected>Project Number</option>');
+    });
+</script>
+
+{% endblock %}

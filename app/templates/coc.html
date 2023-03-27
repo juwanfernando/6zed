@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="col-md-6 offset-md-3">
+
+<h1>Chain of Custody</h1>
+
+    <div class="card">
+        <div class="card-header">
+            <strong>{{ coc.project_name }}</strong>
+        </div>
+        <div class="card-body">
+            <p class="card-text">
+                <strong>Email: </strong>{{ coc.client }}<br/>
+                <strong>Phone: </strong>{{ coc.client_pm }}<br/>
+                <strong>Address: </strong>{{ coc.lab_pm }}<br/>
+                <strong>City: </strong>{{ coc.project_number }}<br/>
+                <strong>State: </strong>{{ coc.po_number }}<br/>
+                <strong>Zipcode: </strong>{{ coc.billing_code }}<br/>
+                <strong>Created At: </strong>{{ coc.created_at }}<br/>
+                <strong>ID: </strong>{{ coc.id }}
+            </p>
+            <a href="{% url 'all_cocs' %}" class="btn btn-secondary">Back</a>
+            <a href="{% url 'update_coc' coc.id %}" class="btn btn-secondary">Update</a>
+            <a href="{% url 'delete_coc' coc.id %}" class="btn btn-danger">Delete</a>
+        </div>
+    </div>
+    
+</div>
+
+{% endblock %}

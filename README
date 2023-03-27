@@ -3,6 +3,7 @@ python.exe -m venv virt
 pip install django
 pip install mysql
 pip install mysql-connector
+pip install mysql-connector-python
 django-admin startproject alkynyl
 cd alkynyl
 python manage.py startapp app
@@ -23,3 +24,15 @@ git init
 git remote add origin https://github.com/juwanfernando/alkynyl.git
 git branch -M main
 git push -u origin main
+
+# Push git
+git add .
+git commit -am 'new project'
+git push
+
+### Database model ###
+python.exe .\manage.py makemigrations
+python.exe .\manage.py migrate
+
+######################
+
